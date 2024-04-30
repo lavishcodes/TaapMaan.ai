@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import r2_score
 from sklearn.preprocessing import LabelEncoder
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 st.title("TAAPMAAN.ai")
 
@@ -57,8 +58,18 @@ for i in range(6):
     st.sidebar.subheader(f'Hour {i} Inputs')
     col_name_summary = f'Hour {i}: Summary'
     col_name_precip = f'Hour {i}: Precip Type'
-    inputs[col_name_summary] = st.sidebar.number_input(f'{col_name_summary}', key=f'summary_{i}', value=0.0)
-    inputs[col_name_precip] = st.sidebar.number_input(f'{col_name_precip}', key=f'precip_{i}', value=0.0)
+    col_name_humidity = f'Hour {i}: Humidity'
+    col_name_windspeed = f'Hour {i}: Wind Speed (km/h)'
+    col_name_windbearing = f'Hour {i}: Wind Bearing (degrees)'
+    col_name_visibility = f'Hour {i}: Visibility (km)'
+    col_name_pressure = f'Hour {i}: Pressure (millibars)'
+    inputs[col_name_summary] = st.sidebar.number_input(f'{col_name_summary}', key=f'summary_{i}', value=0)
+    inputs[col_name_precip] = st.sidebar.number_input(f'{col_name_precip}', key=f'precip_{i}', value=0)
+    inputs[col_name_humidity] = st.sidebar.number_input(f'{col_name_humidity}', key=f'humidity_{i}', value=0.50)
+    inputs[col_name_windspeed] = st.sidebar.number_input(f'{col_name_windspeed}', key=f'windspeed_{i}', value=20)
+    inputs[col_name_windbearing] = st.sidebar.number_input(f'{col_name_windbearing}', key=f'windbearing_{i}', value=180)
+    inputs[col_name_visibility] = st.sidebar.number_input(f'{col_name_visibility}', key=f'visibility_{i}', value=10)
+    inputs[col_name_pressure] = st.sidebar.number_input(f'{col_name_pressure}', key=f'pressure_{i}', value=1000)
 
 # Make prediction
 inputs_df = pd.DataFrame([inputs])
